@@ -1,0 +1,94 @@
+{# templates/servicio/nuevo.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Alta de Servicio - Fotomascotas{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Alta de Servicio</h1>
+
+    {{ form_start(form) }}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form_label(form.nombre, 'Nombre y apellido*', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.nombre, { 'attr': {'class': 'form-control', 'placeholder': 'Ej: Soledad Albornoz'} }) }}
+                    {{ form_errors(form.nombre) }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form_label(form.descripcion, 'Descripción*', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.descripcion, { 'attr': {'class': 'form-control', 'placeholder': 'Describe el servicio...'} }) }}
+                    {{ form_errors(form.descripcion) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.precio, 'Precio ($)*', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.precio, { 'attr': {'class': 'form-control', 'placeholder': 'Ej: 15000'} }) }}
+                    {{ form_errors(form.precio) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.fecha, 'Fecha*', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.fecha, { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(form.fecha) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.hora, 'Hora*', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.hora, { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(form.hora) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.pagado, 'Pagado', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.pagado, { 'attr': {'class': 'form-check-input'} }) }}
+                    {{ form_errors(form.pagado) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.categoria, 'Categoría', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.categoria, { 'attr': {'class': 'form-select'} }) }}
+                    {{ form_errors(form.categoria) }}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    {{ form_label(form.urlImagen, 'URL de Imagen', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.urlImagen, { 'attr': {'class': 'form-control', 'placeholder': 'https://ejemplo.com/imagen.jpg'} }) }}
+                    {{ form_errors(form.urlImagen) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    {{ form_label(form.cantidad, 'Cantidad de Fotos', { 'label_attr': {'class': 'form-label'} }) }}
+                    {{ form_widget(form.cantidad, { 'attr': {'class': 'form-control', 'placeholder': 'Ej: 10'} }) }}
+                    {{ form_errors(form.cantidad) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Agregar</button>
+            <a href="{{ path('app_servicio_index') }}" class="btn btn-secondary btn-lg">↩️ Volver al Listado</a>
+        </div>
+    {{ form_end(form) }}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mt-3">{{ message }}</div>
+    {% endfor %}
+{% endblock %}

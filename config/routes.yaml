@@ -1,5 +1,7 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+app_servicio_index:
+    path: /
+    controller: App\Controller\ServicioController::index
+
+app_servicio_nuevo:
+    path: /servicio/nuevo
+    controller: App\Controller\ServicioController::nuevo

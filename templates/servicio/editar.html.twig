@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Servicio{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Editar Servicio</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary mt-3">Guardar cambios</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_servicio_index') }}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}
+

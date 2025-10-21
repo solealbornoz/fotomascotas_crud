@@ -1,7 +1,4 @@
-app_servicio_index:
-    path: /
-    controller: App\Controller\ServicioController::index
-
-app_servicio_nuevo:
-    path: /servicio/nuevo
-    controller: App\Controller\ServicioController::nuevo
+# config/routes.yaml
+servicio:
+  resource: '../src/Controller/ServicioController.php'
+  type: annotation

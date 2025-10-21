@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/')]
 class ServicioController extends AbstractController
 {
     #[Route('/', name: 'app_servicio_index')]
@@ -34,7 +35,6 @@ class ServicioController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Servicio agregado correctamente.');
-
             return $this->redirectToRoute('app_servicio_index');
         }
 
@@ -51,9 +51,7 @@ class ServicioController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-
             $this->addFlash('success', 'Servicio actualizado correctamente.');
-
             return $this->redirectToRoute('app_servicio_index');
         }
 
@@ -69,7 +67,6 @@ class ServicioController extends AbstractController
         if ($this->isCsrfTokenValid('eliminar' . $servicio->getId(), $request->request->get('_token'))) {
             $em->remove($servicio);
             $em->flush();
-
             $this->addFlash('success', 'Servicio eliminado correctamente.');
         }
 

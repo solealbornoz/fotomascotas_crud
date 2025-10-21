@@ -3,18 +3,26 @@
 {% block title %}Listado de Servicios{% endblock %}
 
 {% block body %}
-    <h1>Listado de Servicios</h1>
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Listado de Servicios</h1>
 
-    <table border="1" cellpadding="5">
-        <thead>
+    <div class="text-end mb-3">
+        <a href="{{ path('app_servicio_nuevo') }}" class="btn btn-success">➕ Nuevo Servicio</a>
+    </div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>Descripción</th>
                 <th>Precio</th>
-                
-                
-                <!-- Agrega mas columnas segun tus atributos -->
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Categoría</th>
+                <th>Pagado</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,15 +31,33 @@
                 <td>{{ servicio.id }}</td>
                 <td>{{ servicio.nombre }}</td>
                 <td>{{ servicio.descripcion }}</td>
-                <td>{{ servicio.precio }}</td>
-            
-                
+                <td>${{ servicio.precio }}</td>
+                <td>{{ servicio.fecha ? servicio.fecha|date('d/m/Y') : '' }}</td>
+                <td>{{ servicio.hora ? servicio.hora|date('H:i') : '' }}</td>
+                <td>{{ servicio.categoria }}</td>
+                <td>
+                    {% if servicio.pagado %}
+                        <span class="badge bg-success">Sí</span>
+                    {% else %}
+                        <span class="badge bg-danger">No</span>
+                    {% endif %}
+                </td>
+                <td>{{ servicio.cantidad }}</td>
+                <td class="text-center">
+                    <a href="{{ path('app_servicio_editar', {'id': servicio.id}) }}" class="btn btn-primary btn-sm">✏️ Editar</a>
+
+                    <form method="post" action="{{ path('app_servicio_eliminar', {'id': servicio.id}) }}" style="display:inline-block" onsubmit="return confirm('¿Seguro que deseas eliminar este servicio?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('eliminar' ~ servicio.id) }}">
+                        <button class="btn btn-danger btn-sm">🗑️ Eliminar</button>
+                    </form>
+                </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">No hay servicios registrados.</td>
+                <td colspan="10" class="text-center">No hay servicios registrados.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}
